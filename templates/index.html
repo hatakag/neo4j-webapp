@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 
 {% block intro %}
-  <a href="https://jquery.com/">jQuery</a> is a popular library that
-  adds cross browser APIs for common tasks. However, it requires loading
-  an extra library.
+  Press Users or Groups button bellow to get information about them
 {% endblock %}
 
 {% block script %}
@@ -11,10 +9,38 @@
 <script>
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 $(function() {
-    $('a#users').bind('click', function() {
+    $(".users").on("click", function(){
         $.getJSON('http://localhost:8080' + '/users',
             function(data) {
-                $("#result").text(data.result);
+                console.log(data);
+                var tbl_body = "";
+                $.each(data.users, function() {
+                    var tbl_row = "";
+                    $.each(this, function(k , v) {
+                        tbl_row += "<td>"+v+"</td>";
+                    })
+                    tbl_body += "<tr>"+tbl_row+"</tr>";
+                    console.log(tbl_row);
+                })
+                $("#result tbody").html(tbl_body);
+            });
+        return false;
+    });
+
+    $(".groups").on("click", function(){
+        $.getJSON('http://localhost:8080' + '/groups',
+            function(data) {
+                console.log(data);
+                var tbl_body = "";
+                $.each(data.groups, function() {
+                    var tbl_row = "";
+                    $.each(this, function(k , v) {
+                        tbl_row += "<td>"+v+"</td>";
+                    })
+                    tbl_body += "<tr>"+tbl_row+"</tr>";
+                    console.log(tbl_row);
+                })
+                $("#result tbody").html(tbl_body);
             });
         return false;
     });

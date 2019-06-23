@@ -11,10 +11,10 @@
     form > * { padding-right: 1em; }
     #result { font-weight: bold; }
 </style>
-{% block script %}{% endblock %}
 <hr>
 <p>{% block intro %}{% endblock %}</p>
 <hr>
-<a href=# id=users>Users</a>
-<a href=# id=groups>Groups</a>
-<span><span id="result"></span></span>
+<button class="users">Users</button>
+<button class="groups">Groups</button>
+<div id="result"><table><tbody></tbody></table></div>
+{% block script %}{% endblock %}
