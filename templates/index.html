@@ -13,7 +13,7 @@ $(function() {
         $.getJSON('http://localhost:8080' + '/users',
             function(data) {
                 console.log(data);
-                var tbl_body = "";
+                var tbl_body = "<tr><td><b>User basic information</b></td><td><b>User contact information</b></td><td><b>User FB link</b></td><td><b>User ID</b></td><td><b>User relationship information</b></td><td><b>Username</b></td></tr>";
                 $.each(data.users, function() {
                     var tbl_row = "";
                     $.each(this, function(k , v) {
@@ -31,7 +31,7 @@ $(function() {
         $.getJSON('http://localhost:8080' + '/groups',
             function(data) {
                 console.log(data);
-                var tbl_body = "";
+                var tbl_body = "<tr><td><b>Description</b></td><td><b>Group link</b></td><td><b>Group name</b></td></tr>";
                 $.each(data.groups, function() {
                     var tbl_row = "";
                     $.each(this, function(k , v) {
